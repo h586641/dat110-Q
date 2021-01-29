@@ -1,8 +1,16 @@
 package no.hvl.dat110.rpc;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import no.hvl.dat110.TODO;
 import no.hvl.dat110.messaging.*;
 
+/**
+ * Class implementing the client-side of the RPC layer using the client-side of the underlying
+ * messaging layer for communication.
+ *
+ */
 public class RPCClient {
 
 	private MessagingClient msgclient;
@@ -19,17 +27,22 @@ public class RPCClient {
 	
 	public void connect() {
 		
-		// TODO: connect using the underlying messaging layer connection
-		
-	    throw new UnsupportedOperationException(TODO.method());
+		// start TODO: connect using the underlying messaging layer connection
+			try {
+				connection = msgclient.connect();
+			} catch (IOException ex) {
+				System.out.println("TCP client: " + ex.getMessage());
+				ex.printStackTrace();
+			}
+	    // end TODO
 			
 	}
 	
 	public void disconnect() {
 		
-		// TODO: disconnect/close the underlying messaging connection
-		
-		throw new UnsupportedOperationException(TODO.method());
+		// start TODO: disconnect/close the underlying messaging connection
+		connection.close();
+		// end TODO
 		
 	}
 	
@@ -37,19 +50,17 @@ public class RPCClient {
 		
 		byte[] rpcreply;
 		
-		/* TODO: 
-		
+		/* start TODO: 
 		Make a remote call on the RPC server by sending the RPC request message
 		and receive an RPC reply message
 		
 		rpcrequest is the marshalled rpcrequest from the client-stub
 		rpctreply is the rpcreply to be unmarshalled by the client-stub
-		
 		*/
 		
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		connection.send(new Message(rpcrequest));
+		rpcreply = connection.receive().getData();
+		// end TODO
 		
 		return rpcreply;
 		

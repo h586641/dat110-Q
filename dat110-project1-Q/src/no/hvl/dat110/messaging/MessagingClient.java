@@ -35,9 +35,6 @@ public class MessagingClient {
 			clientSocket = new Socket(server, port);
 			connection = new Connection(clientSocket);
 			
-		} catch (UnknownHostException e) {
-			System.out.println("TCP client: " + e.getMessage());
-			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("TCP client: " + e.getMessage());
 			e.printStackTrace();
