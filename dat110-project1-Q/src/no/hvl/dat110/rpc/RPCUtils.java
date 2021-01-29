@@ -1,5 +1,7 @@
 package no.hvl.dat110.rpc;
 
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 import no.hvl.dat110.TODO;
@@ -15,11 +17,16 @@ public class RPCUtils {
 
 		byte[] encoded;
 
-		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
+		// start TODO: marshall RPC identifier and string into byte array
+		// konvertere str til byte
+		byte[] strByte = str.getBytes();
+		encoded = new byte[strByte.length + 1];
+		
+		encoded[0] = rpcid;
+		for (int i = 1; i < encoded.length; i++) {
+			encoded[i] = strByte[i-1];
 		}
+		// end TODO
 
 		return encoded;
 	}
@@ -28,12 +35,14 @@ public class RPCUtils {
 
 		String decoded;
 
-		// TODO: unmarshall String contained in data into decoded
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
+		// start TODO: unmarshall String contained in data into decoded
+		byte[] strByte = new byte[data.length - 1];
+		for (int i = 0; i < strByte.length; i++) {
+			strByte[i] = data[i+1];
 		}
-
+		decoded = new String(strByte);
+		// end TODO
+		
 		return decoded;
 	}
 
@@ -41,11 +50,10 @@ public class RPCUtils {
 
 		byte[] encoded;
 
-		// TODO: marshall RPC identifier in case of void type
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		// start TODO: marshall RPC identifier in case of void type
+		encoded = new byte[1];
+		encoded[0] = rpcid;
+		// end TODO
 
 		return encoded;
 
@@ -54,6 +62,7 @@ public class RPCUtils {
 	public static void unmarshallVoid(byte[] data) {
 
 		// TODO: unmarshall void type
+		// gjøres ingenting
 	}
 
 	public static byte[] marshallBoolean(byte rpcid, boolean b) {
@@ -81,11 +90,15 @@ public class RPCUtils {
 
 		byte[] encoded;
 
-		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
+		// start TODO: marshall RPC identifier and string into byte array
+		
+		byte[] intByte = intToByteArray(x);
+		encoded = new byte[intByte.length + 1];
+		encoded[0] = rpcid;
+		for (int i = 0; i < intByte.length; i++) {
+			encoded[i+1] = intByte[i];
 		}
+		// end TODO
 
 		return encoded;
 	}
@@ -94,13 +107,27 @@ public class RPCUtils {
 
 		int decoded;
 
-		// TODO: unmarshall integer contained in data
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
-
+		// start TODO: unmarshall integer contained in data
+		decoded = dataToInt(data);
+		// end TODO
+		
 		return decoded;
+	}
+	
+	/*
+	 * Konverterer 32-bits heltall til en tabell av bytes
+	 */
+	public static byte[] intToByteArray(int heltall) {
+		return ByteBuffer.allocate(4).putInt(heltall).array();
+
+	}
+	
+	/**	
+	 * Konverterer en tabell av bytes til 32-bits heltall
+	 */
+	public static int dataToInt(byte[] byteArray) {
+		 
+		return ByteBuffer.wrap(byteArray).getInt(1);
 
 	}
 }

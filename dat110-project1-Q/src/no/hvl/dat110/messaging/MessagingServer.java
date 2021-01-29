@@ -6,6 +6,10 @@ import java.net.Socket;
 
 import no.hvl.dat110.TODO;
 
+/**
+ * implementing the methods for the server-side of the messaging service. In the current 
+ * project, a server is only required to handle a single connection from a client.
+ */
 public class MessagingServer {
 
 	private ServerSocket welcomeSocket;
@@ -28,13 +32,18 @@ public class MessagingServer {
 
 		Connection connection = null;
 
-		// TODO
+		// start TODO
 		// accept TCP connection on welcome socket and create messaging connection
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
+		try {
+			Socket connectionSocket = welcomeSocket.accept();
+			connection = new Connection(connectionSocket);
+			
+		} catch (IOException ex) {
+			System.out.println("Messaging server: " + ex.getMessage());
+			ex.printStackTrace();
 		}
-
+		// end TODO
+		
 		return connection;
 
 	}
