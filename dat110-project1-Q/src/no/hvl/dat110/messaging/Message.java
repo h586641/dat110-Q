@@ -71,8 +71,6 @@ public class Message {
 
 	/**
 	 * Hjelpemetode som returnere en payload som har riktig størrelse.
-	 * Dersom den opprinnelige payload har flere bytes, blir den forkortet og de øvrige byte blir kastet.
-	 * Dersom den opprinnelige payload har færre bytes, blir den fylt med ekstra padding (null byte); 
 	 */
 	private byte[] resizePayload(byte[] payload) {
 		byte[] kopi = new byte[MAX_PAYLOAD_SIZE];
