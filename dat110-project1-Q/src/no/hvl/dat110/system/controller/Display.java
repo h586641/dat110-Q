@@ -3,15 +3,28 @@ package no.hvl.dat110.system.controller;
 import no.hvl.dat110.TODO;
 import no.hvl.dat110.rpc.*;
 
+
+/**
+ * Implement client-side stub of display
+ * @author phuongquyenpham
+ *
+ */
 public class Display extends RPCStub {
 
 	private byte RPCID = 1;
 
+	
+	// See the RPCServerStopStub.javafor inspiration
 	public void write(String message) {
 
-		// TODO
+		// start TODO
 		// implement marshalling, call and unmarshalling for write RPC method
 
-		throw new UnsupportedOperationException(TODO.method());
+		byte[] rpcrequest = RPCUtils.marshallString(RPCID, message);
+		
+		byte[] rpcreply = rpcclient.call(rpcrequest);
+		RPCUtils.unmarshallString(rpcreply);
+		
+		// end TODO
 	}
 }
