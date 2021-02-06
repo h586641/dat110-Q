@@ -1,13 +1,10 @@
 package no.hvl.dat110.system.controller;
 
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.rpc.*;
 
 
 /**
  * Implement client-side stub of display
- * @author phuongquyenpham
- *
  */
 public class Display extends RPCStub {
 
@@ -23,6 +20,7 @@ public class Display extends RPCStub {
 		byte[] rpcrequest = RPCUtils.marshallString(RPCID, message);
 		
 		byte[] rpcreply = rpcclient.call(rpcrequest);
+		
 		RPCUtils.unmarshallString(rpcreply);
 		
 		// end TODO

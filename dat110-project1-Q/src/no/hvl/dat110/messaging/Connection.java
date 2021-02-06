@@ -1,13 +1,9 @@
 package no.hvl.dat110.messaging;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
-
-import no.hvl.dat110.TODO;
 
 
 /**
@@ -43,17 +39,16 @@ public class Connection {
 		// start TODO
 		// encapsulate the data contained in the message and write to the output stream
 		// Hint: use the encapsulate method on the message
+		byte[] encapsulatedMessage;
 		
 		try {
-			byte[] encapsulatedMessage = message.encapsulate();
+			encapsulatedMessage = message.encapsulate();
 			outStream.write(encapsulatedMessage);
 		} catch (IOException e) {
 			System.out.println("TCPServer: " + e.getMessage());
 			e.printStackTrace();
 		}
 		// end TODO
-
-
 	}
 
 	public Message receive() {
@@ -73,7 +68,6 @@ public class Connection {
 			System.out.println("TCPServer: " + e.getMessage());
 			e.printStackTrace();
 		}
-		
 		// end TODO
 
 

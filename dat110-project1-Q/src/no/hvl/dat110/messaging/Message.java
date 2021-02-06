@@ -1,8 +1,5 @@
 package no.hvl.dat110.messaging;
 
-import java.util.Arrays;
-
-import no.hvl.dat110.TODO;
 
 public class Message {
 	
@@ -24,14 +21,17 @@ public class Message {
 		this.payload = payload;
 	}
 
+	
 	public Message() {
 		super();
 	}
 
+	
 	public byte[] getData() {
 		return this.payload; 
 	}
 
+	
 	public byte[] encapsulate() {
 		
 		byte[] encoded = null;
@@ -40,20 +40,17 @@ public class Message {
 		// encapulate/encode the payload of this message in the
 		// encoded byte array according to message format
 		
-		int payloadDataLength = 0;
-
 		encoded = new byte[MESSAGE_SIZE];
 		encoded[0] = (byte)payload.length;
-		System.out.println(encoded[0]);
 		for (int i = 0; i < payload.length; i++) {
 			encoded[i+1] = payload[i];
 		}
 		// end TODO
 		
 		return encoded;
-		
 	}
 
+	
 	public void decapsulate(byte[] received) {
 
 		// start TODO

@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import no.hvl.dat110.TODO;
-
 /**
  * implementing the methods for the client-side of the messaging service and responsible 
  * for creating the underlying TCP socket on the client-side.
@@ -39,11 +37,7 @@ public class MessagingClient {
 			System.out.println("TCP client: " + e.getMessage());
 			e.printStackTrace();
 		}
-		
 		// end TODO
-//		if (true) {
-//			throw new UnsupportedOperationException(TODO.method());
-//		}
 
 		return connection;
 	}

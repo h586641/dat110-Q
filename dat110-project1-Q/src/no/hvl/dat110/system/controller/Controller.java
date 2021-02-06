@@ -1,6 +1,5 @@
 package no.hvl.dat110.system.controller;
 
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.rpc.RPCClient;
 import no.hvl.dat110.rpc.RPCServerStopStub;
 
@@ -46,9 +45,12 @@ public class Controller  {
 		
 		// start TODO:
 		// loop while reading from sensor and write to display via RPC
-		int temp = sensor.read();
-		display.write(Integer.toBinaryString(temp));
-		
+		int i = 0;
+		while (i < N) {
+			int temp = sensor.read();
+			display.write(Integer.toString(temp));
+			i++;
+		}
 		// end TODO
 		
 		stopdisplay.stop();

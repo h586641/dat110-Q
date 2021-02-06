@@ -1,10 +1,6 @@
 package no.hvl.dat110.rpc;
 
-import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.util.Arrays;
-
-import no.hvl.dat110.TODO;
 
 public class RPCUtils {
 
@@ -91,13 +87,12 @@ public class RPCUtils {
 		byte[] encoded;
 
 		// start TODO: marshall RPC identifier and string into byte array
-		
 		byte[] intByte = intToByteArray(x);
 		encoded = new byte[intByte.length + 1];
 		encoded[0] = rpcid;
 		for (int i = 0; i < intByte.length; i++) {
 			encoded[i+1] = intByte[i];
-		}
+		}		
 		// end TODO
 
 		return encoded;
@@ -107,8 +102,8 @@ public class RPCUtils {
 
 		int decoded;
 
-		// start TODO: unmarshall integer contained in data
-		decoded = dataToInt(data);
+		// start TODO: unmarshall integer contained in data		
+		decoded = dataToInt(data);	
 		// end TODO
 		
 		return decoded;
@@ -117,7 +112,7 @@ public class RPCUtils {
 	/*
 	 * Konverterer 32-bits heltall til en tabell av bytes
 	 */
-	public static byte[] intToByteArray(int heltall) {
+	private static byte[] intToByteArray(int heltall) {
 		return ByteBuffer.allocate(4).putInt(heltall).array();
 
 	}
@@ -125,8 +120,8 @@ public class RPCUtils {
 	/**	
 	 * Konverterer en tabell av bytes til 32-bits heltall
 	 */
-	public static int dataToInt(byte[] byteArray) {
-		 
+	private static int dataToInt(byte[] byteArray) {
+		
 		return ByteBuffer.wrap(byteArray).getInt(1);
 
 	}
